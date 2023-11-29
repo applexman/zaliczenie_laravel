@@ -8,6 +8,7 @@
     border: 1px solid #007bff;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .submit-button:hover {
@@ -20,10 +21,11 @@
     padding: 10px 15px;
     text-decoration: none;
     color: #fff;
-    background-color: #6c757d;
-    border: 1px solid #6c757d;
+    background-color: #3e474e;
+    border: 1px solid #3e474e;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .back-button:hover {
@@ -41,7 +43,7 @@
 .form-container {
     align-items: center;
     justify-content: center;
-    background-color: #333333;
+    background-color: #6c757d;
     padding: 50px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -57,11 +59,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    margin: 50px;
     color: #333;
 }
 
-.header-section, .transaction-section {
+.header-section {
     width: 100%;
     max-width: 800px;
     border-radius: 10px;
@@ -69,19 +71,11 @@
     margin-bottom: 20px;
 }
 
-.header-section, .transaction-section {
+.header-section {
     display: flex;
     justify-content: space-between;
     padding: 20px;
     font-size: 18px;
-}
-
-.header-section {
-    background-color: #8d8b8b;
-}
-
-.transaction-section {
-    background-color: #8d8b8b;
 }
 
 .user-info {
@@ -95,7 +89,7 @@
 
 .blue-button {
     display: inline-block;
-    padding: 10px 15px;
+    padding: 7px 12px;
     text-decoration: none;
     color: #fff;
     background-color: #0056b3;
@@ -103,6 +97,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .blue-button:hover {
@@ -110,7 +105,26 @@
     border-color: #004080;
 }
 
-h2, h3 {
+.red-button {
+    display: inline-block;
+    padding: 7px 12px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #b30c00;
+    border: 1px solid #b30c00;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.red-button:hover {
+    background-color: #8b170f;
+    border-color: #8b170f;
+}
+
+h2,
+h3 {
     font-weight: bold;
 }
 
@@ -121,6 +135,7 @@ h2 {
 h3 {
     font-size: 19px;
 }
+
 .transaction-list {
     list-style: none;
     padding: 0;
@@ -128,4 +143,95 @@ h3 {
 
 .transaction-list li {
     margin-bottom: 10px;
+}
+
+.sending {
+    color: rgba(161, 42, 42, 0.644);
+}
+
+.reciving {
+    color: rgb(26, 104, 26);
+}
+
+.admin-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+th,
+td {
+    border: 1px solid #d2d6dc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f0f4f8;
+}
+
+td {
+    background-color: #ffffff;
+}
+
+.form-container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+input{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.admin-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #d2d6dc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f0f4f8;
+    font-size:x-large;
+}
+
+td {
+    background-color: #ffffff;
+    font-size: larger;
+}
+label{
+    color: #fff;
+    font-size: larger;
 }

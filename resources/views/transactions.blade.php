@@ -3,26 +3,33 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight" style="color: #000000;">
             {{ __('Nowy przelew') }}
         </h2>
-        Twoje saldo {{Auth::user()->balance}}zł
+        Twoje saldo {{ Auth::user()->balance }}zł
     </x-slot>
     <div class="center-container">
         <div class="form-container">
-            <h3>Dane do przelewu</h3><br>
-            <form method="POST" action="{{route('transfer')}}">
+            <div style="margin-bottom: 1rem;">
+                <label for="receiver_id">
+                    <h3>Dane do przelewu</h3>
+                </label>
+            </div>
+            <form method="POST" action="{{ route('transfer') }}">
                 @csrf
                 <div style="margin-bottom: 1rem;">
-                    <label for="receiver_id" style="color: #fff;">ID odbiorcy:</label><br>
-                    <input type="text" class="form-control" id="receiver_id" name="receiver_id" required>
+                    <label for="receiver_id">ID odbiorcy:</label><br>
+                    <input type="text" class="form-control" id="receiver_id" name="receiver_id"
+                        placeholder="Podaj numer odbiorcy" required>
                 </div>
 
                 <div style="margin-bottom: 1rem;">
-                    <label for="amount" style="color: #fff;">Kwota:</label><br>
-                    <input type="text" class="form-control" id="amount" name="amount" required>
+                    <label for="amount">Kwota:</label><br>
+                    <input type="number" min="0" class="form-control" id="amount" name="amount"
+                        placeholder="Podaj kwotę przelewu" required>
                 </div>
 
                 <div style="margin-bottom: 1rem;">
-                    <label for="title" style="color: #fff;">Tytuł:</label><br>
-                    <input type="text" class="form-control" id="title" name="title" required>
+                    <label for="title">Tytuł:</label><br>
+                    <input type="text" class="form-control" id="title" name="title"
+                        placeholder="Podaj tytuł przelewu" required>
                 </div>
 
                 <div style="margin-bottom: 1rem;">

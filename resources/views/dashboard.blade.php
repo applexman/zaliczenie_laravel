@@ -35,22 +35,31 @@
         </div>
 
         <div class="transaction-section">
-
-            <ul class="transaction-list">
-                <h3>Twoje transakcje:</h3><br>
-                @foreach ($userTransaction as $transaction)
-                    <li>
-                        @if ($transaction->sender_id === Auth::user()->id)
-                            -{{ $transaction->amount }}zł - do {{ $transaction->receiver->name}} tytułem: "{{ $transaction->title }}" wysłano
-                            przelew: {{ $transaction->created_at }}.
-                        @else
-                            +{{ $transaction->amount }}zł - od {{ $transaction->sender->name}} tytułem: "{{ $transaction->title }} wysłano
-                            przelew:
-                            {{ $transaction->created_at }}.
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
+            <table>
+                <thead>
+                    <th>Twoje transakcje
+                    </th>
+                </thead>
+                <tbody>
+                    @foreach ($userTransaction as $transaction)
+                        <tr>
+                            <td>
+                                @if ($transaction->sender_id === Auth::user()->id)
+                                    <h3 class="sending">-{{ $transaction->amount }}zł - do nuneru:
+                                        {{ $transaction->receiver_id}}
+                                        tytułem: "{{ $transaction->title }}" wysłano
+                                        przelew: {{ $transaction->created_at }}.</h3>
+                                @else
+                                    <h3 class="reciving">+{{ $transaction->amount }}zł - od numeru
+                                        {{ $transaction->sender_id }}
+                                        tytułem: "{{ $transaction->title }} wysłano
+                                        przelew:
+                                        {{ $transaction->created_at }}.</h3>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
         </div>
     </div>
 </x-app-layout>

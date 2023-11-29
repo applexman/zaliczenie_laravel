@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sender_id')->constrained('users');
-            $table->foreignId('receiver_id')->constrained('users');
+            $table->integer('sender_id');
+            $table->integer('receiver_id');
             $table->decimal('amount', 10, 2);
             $table->string('title');
             $table->timestamps();
