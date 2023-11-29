@@ -34,3 +34,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/transactions', [App\Http\Controllers\TransactionController::class, 'transfer'])->name('transfer');
 
 Route::get('dashboard', [App\Http\Controllers\TransactionController::class,'show'])->name('dashboard');
+
+Route::get('admin.index', [App\Http\Controllers\AdminController::class,'index'])->name('admin.index');
+Route::get('admin.edit', [App\Http\Controllers\AdminController::class,'edit'])->name('admin.edit');
+Route::get('admin.create', [App\Http\Controllers\AdminController::class,'create'])->name('admin.create');
