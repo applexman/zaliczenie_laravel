@@ -8,7 +8,7 @@
     <div class="center-container">
         <div class="form-container">
             <h3>Dane do przelewu</h3><br>
-            <form method="POST" action="transfer">
+            <form method="POST" action="{{route('transfer')}}">
                 @csrf
                 <div style="margin-bottom: 1rem;">
                     <label for="receiver_id" style="color: #fff;">ID odbiorcy:</label><br>

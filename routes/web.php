@@ -27,8 +27,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'show'])->name('transactions');
+Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index'])->name('transactions');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/transactions', [App\Http\Controllers\TransactionController::class, 'transfer']);
+Route::post('/transactions', [App\Http\Controllers\TransactionController::class, 'transfer'])->name('transfer');
+
+Route::get('dashboard', [App\Http\Controllers\TransactionController::class,'show'])->name('dashboard');

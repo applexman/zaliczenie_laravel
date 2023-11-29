@@ -5,25 +5,54 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
 
 class TransactionController extends Controller
 {
-    public function show()
+    public function index()
     {
         return view("transactions");
     }
 
-    public function transfer(Request $request)
+    public function show()
     {
-        $transaction = $request->validate([
+        $userTransaction = Transaction::where('sender_id', Auth::user()->id)
+            ->orWhere('receiver_id', Auth::user()->id)
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view("dashboard", ['userTransaction' => $userTransaction]);
+    }
+
+    public function transfer(Request $request): RedirectResponse
+    {
+        $request->validate([
             'receiver_id' => 'required',
-            'amount' => 'required|lte'.Auth::user()->balance,
+            'amount' => 'required|lte:' . Auth::user()->balance,
             'title' => 'required',
         ]);
-        $transaction['sender_id'] = Auth::user()->id;
+        $transaction = new Transaction([
+            'sender_id' => Auth::user()->id,
+            'receiver_id' => $request->input('receiver_id'),
+            'amount' => $request->input('amount'),
+            'title' => $request->input('title'),
+        ]);
 
-        return View("dashboard");
+        $sender = User::find(Auth::user()->id);
+        $sender->balance -= ($request->input('amount'));
+
+        $receiver = User::find($request->input('receiver_id'));
+        $receiver->balance += ($request->input('amount'));
+
+        if ($transaction->save() && $sender->save() && $receiver->save()) {
+            return redirect('dashboard');
+        } else {
+            return redirect('dashboard');
+        }
     }
 }
