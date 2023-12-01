@@ -35,6 +35,8 @@ Route::post('/transactions', [App\Http\Controllers\TransactionController::class,
 
 Route::get('dashboard', [App\Http\Controllers\TransactionController::class,'show'])->name('dashboard');
 
+Route::get('employee', [App\Http\Controllers\EmployeeController::class,'index'])->name('employee');
+
 Route::get('admin.index', [App\Http\Controllers\AdminController::class,'index'])->name('admin.index');
 Route::get('admin.edit', [App\Http\Controllers\AdminController::class,'edit'])->name('admin.edit');
 Route::GET('admin.create', [App\Http\Controllers\AdminController::class,'create'])->name('admin.create');

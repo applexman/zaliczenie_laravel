@@ -16,10 +16,17 @@
                         {{ __('Twoje konto') }}
                     </x-nav-link>
                 </div>
+                @if (Auth::user()->role('admin') || Auth::user()->role('employee'))
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('employee') }}" :active="request()->routeIs('employee')">
+                        {{ __('Panel pracownika') }}
+                    </x-nav-link>
+                </div>
+                @endif
                 @if (Auth::user()->role('admin'))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('admin.index') }}" :active="request()->routeIs('admin.index')">
-                        {{ __('Admin') }}
+                        {{ __('Panel Admina') }}
                     </x-nav-link>
                 </div>
                 @endif

@@ -37,7 +37,8 @@
         <div class="transaction-section">
             <table>
                 <thead>
-                    <th>Twoje transakcje
+                    <th>
+                        Twoje transakcje
                     </th>
                 </thead>
                 <tbody>
@@ -45,12 +46,12 @@
                         <tr>
                             <td>
                                 @if ($transaction->sender_id === Auth::user()->id)
-                                    <h3 class="sending">-{{ $transaction->amount }}zł - do nuneru:
+                                    <h3 class="sending">-{{ $transaction->amount }}zł do numeru:
                                         {{ $transaction->receiver_id}}
                                         tytułem: "{{ $transaction->title }}" wysłano
                                         przelew: {{ $transaction->created_at }}.</h3>
                                 @else
-                                    <h3 class="reciving">+{{ $transaction->amount }}zł - od numeru
+                                    <h3 class="reciving">+{{ $transaction->amount }}zł od numeru
                                         {{ $transaction->sender_id }}
                                         tytułem: "{{ $transaction->title }} wysłano
                                         przelew:
