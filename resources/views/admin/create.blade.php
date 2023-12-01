@@ -26,6 +26,13 @@
                 <label for="password">Hasło</label>
                 <input type="password" name="password" id="password" placeholder="Podaj hasło" required>
                 </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="role">Rola</label><br>
+                    <select id="role" name="role">
+                        <option value="user">User</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
                 <a href="{{ route('admin.index') }}" class="back-button">Powrót</a>
                 <button type="submit" class="submit-button">Dodaj użytkownika</button>
             </form>

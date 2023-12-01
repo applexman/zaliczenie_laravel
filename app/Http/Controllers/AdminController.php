@@ -34,11 +34,12 @@ class AdminController extends Controller
             return redirect("dashboard");
         }
     }
-    public function edit()
+    public function edit($id)
     {
         $user = User::find(Auth::user()->id);
         if ($user->role("admin")) {
-            return view("admin.edit");
+            $user=User::find($id);
+            return view("admin.edit", ["user"=> $user]);
         } else {
             return redirect("dashboard");
         }
@@ -48,14 +49,16 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required | min:2',
             'email' => 'required | min:5 | email',
-            'password' => 'required| min:8'
+            'password' => 'required| min:8',
+            'role' => 'required',
         ]);
         $name = $request->input('name');
         $email = $request->input('email');
         $password = Hash::make($request->input('password'));
+        $role = $request->input('role');
 
 
-        if (DB::insert('insert into users(name, email, password) values(?,?,?)', [$name, $email, $password])) {
+        if (DB::insert('insert into users(name, email, password, role) values(?,?,?,?)', [$name, $email, $password, $role])) {
             return redirect('admin.index');
         } else {
             return redirect('admin.create');
@@ -69,6 +72,26 @@ class AdminController extends Controller
             return redirect('admin.index');
         } else {
             return redirect('admin.index');
+        }
+    }
+
+    public function editUser(Request $request, $id): RedirectResponse
+    {
+        $request->validate([
+            'name' => 'required | min:2',
+            'email' => 'required | min:5 | email',
+            'role' => 'required',
+        ]);
+
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->role = $request->input('role');
+        if ($user->save()) {
+            return redirect('admin.index');
+        } else {
+            return redirect('admin.create');
         }
     }
 }
