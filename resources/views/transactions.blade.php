@@ -18,18 +18,27 @@
                     <label for="receiver_id">ID odbiorcy:</label><br>
                     <input type="text" class="form-control" id="receiver_id" name="receiver_id"
                         placeholder="Podaj numer odbiorcy" required>
+                    @error('receiver_id')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div style="margin-bottom: 1rem;">
                     <label for="amount">Kwota:</label><br>
                     <input type="number" min="0" class="form-control" id="amount" name="amount"
                         placeholder="Podaj kwotę przelewu" required>
+                    @error('amount')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div style="margin-bottom: 1rem;">
                     <label for="title">Tytuł:</label><br>
                     <input type="text" class="form-control" id="title" name="title"
                         placeholder="Podaj tytuł przelewu" required>
+                    @error('title')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div style="margin-bottom: 1rem;">

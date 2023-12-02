@@ -35,6 +35,9 @@
         </div>
 
         <div class="transaction-section">
+            @if (count($userTransaction)<=0)
+                <h2>Brak historii transakcji</h2>
+            @else
             <table>
                 <thead>
                     <th>
@@ -61,6 +64,7 @@
                         </tr>
                     @endforeach
                 </tbody>
+                @endif
         </div>
     </div>
 </x-app-layout>

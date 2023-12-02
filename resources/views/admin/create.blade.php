@@ -11,26 +11,37 @@
     <div class="dashboard-container">
         <div class="form-container">
 
-            <label for="name"><h2 style="color: white">Dodaj użytkownika</h2></label>
+            <label for="name">
+                <h2 style="color: white">Dodaj użytkownika</h2>
+            </label>
             <form method="post" {{ route('createUser') }}>
                 @csrf
                 <div style="margin-bottom: 1rem;">
-                <label for="name">Nazwa użytkownika</label>
-                <input type="text" name="name" id="name" placeholder="Podaj nazwę użytkownika" required>
+                    <label for="name">Nazwa użytkownika</label>
+                    <input type="text" name="name" id="name" placeholder="Podaj nazwę użytkownika" required>
+                    @error('name')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
                 <div style="margin-bottom: 1rem;">
-                <label for="email">Email użytkownika</label>
-                <input type="email" name="email" id="email" placeholder="Podaj email" required>
+                    <label for="email">Email użytkownika</label>
+                    <input type="email" name="email" id="email" placeholder="Podaj email" required>
+                    @error('email')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
                 <div style="margin-bottom: 1rem;">
-                <label for="password">Hasło</label>
-                <input type="password" name="password" id="password" placeholder="Podaj hasło" required>
+                    <label for="password">Hasło</label>
+                    <input type="password" name="password" id="password" placeholder="Podaj hasło" required>
+                    @error('password')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
                 <div style="margin-bottom: 1rem;">
                     <label for="role">Rola</label><br>
                     <select id="role" name="role">
-                        <option value="user">User</option>
-                        <option value="employee">Employee</option>
+                        <option value="user">Użytkownik</option>
+                        <option value="employee">Pracownik</option>
                     </select>
                 </div>
                 <a href="{{ route('admin.index') }}" class="back-button">Powrót</a>

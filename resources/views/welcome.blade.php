@@ -67,7 +67,11 @@
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Aktualności</h2>
                                 <h2 class="text">
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac lectus non eros volutpat cursus. Vestibulum viverra ligula felis, quis gravida sem commodo sit amet. Donec fringilla lorem nec vehicula finibus. Nulla non odio risus. Donec non eros eu nibh tempor accumsan volutpat ac ex.
+                                    <ul><h3>Autorzy:</h3>
+                                        <li>Marcin Koterba</li>
+                                        <li>Mateusz Kijak</li>
+                                        <li>Weronika Kijewska</li>
+                                    </ul>
                                 </p>
                             </div>
                         </a>

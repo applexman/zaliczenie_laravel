@@ -47,7 +47,13 @@ class TransactionController extends Controller
         $sender->balance -= ($request->input('amount'));
 
         $receiver = User::find($request->input('receiver_id'));
-        $receiver->balance += ($request->input('amount'));
+        if($receiver){
+            $receiver->balance += ($request->input('amount'));
+        }
+        else{
+            return redirect('transactions')->withErrors(['receiver_id' =>'Nie znaleziono użytkownika']);
+        }
+
 
         if ($transaction->save() && $sender->save() && $receiver->save()) {
             return redirect('dashboard');

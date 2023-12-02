@@ -16,16 +16,22 @@
                 <div style="margin-bottom: 1rem;">
                     <label for="name">Nazwa użytkownika</label>
                     <input type="text" name="name" id="name" value="{{ $user->name }}" required>
+                    @error('name')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
                 <div style="margin-bottom: 1rem;">
                     <label for="email">Email użytkownika</label>
                     <input type="email" name="email" id="email" value="{{ $user->email }}" required>
+                    @error('email')
+                        <div>{{ $message }}</div>
+                    @enderror
                 </div>
                 <div style="margin-bottom: 1rem;">
                     <label for="role">Rola</label><br>
                     <select id="role" name="role">
-                        <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
-                        <option value="employee" {{ $user->role == 'employee' ? 'selected' : '' }}>Employee</option>
+                        <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>Użytkownik</option>
+                        <option value="employee" {{ $user->role == 'employee' ? 'selected' : '' }}>Pracownik</option>
                     </select>
                 </div>
                 <a href="{{ route('admin.index') }}" class="back-button">Powrót</a>

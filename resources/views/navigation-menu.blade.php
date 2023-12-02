@@ -16,6 +16,11 @@
                         {{ __('Twoje konto') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('loan.index') }}" :active="request()->routeIs('loan')">
+                        {{ __('Szybki kredyt') }}
+                    </x-nav-link>
+                </div>
                 @if (Auth::user()->role('admin') || Auth::user()->role('employee'))
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('employee') }}" :active="request()->routeIs('employee')">

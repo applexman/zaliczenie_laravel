@@ -43,3 +43,8 @@ Route::GET('admin.create', [App\Http\Controllers\AdminController::class,'create'
 Route::POST('admin.create', [App\Http\Controllers\AdminController::class,'createUser'])->name('createUser');
 Route::GET('deleteUser/{id}', [App\Http\Controllers\AdminController::class,'deleteUser'])->name('deleteUser');
 Route::PUT('admin.edit/{id}', [App\Http\Controllers\AdminController::class,'editUser'])->name('editUser');
+
+Route::GET('loan.index', [App\Http\Controllers\LoanController::class,'index'])->name('loan.index');
+Route::GET('loan.get', [App\Http\Controllers\LoanController::class, 'getLoan'])->name('loan.get');
+Route::POST('loan.get', [App\Http\Controllers\LoanController::class,'addLoan'])->name('addLoan');
+Route::GET('loan.index/{id}', [App\Http\Controllers\LoanController::class,'payLoan'])->name('payLoan');
