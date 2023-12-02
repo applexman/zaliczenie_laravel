@@ -32,7 +32,7 @@
                     @foreach ($transactions as $transaction)
                         <tr>
                             <td>
-                                <h3>-{{ $transaction->amount }}zł do numeru:
+                                <h3>{{ $transaction->amount }}zł do numeru:
                                     {{ $transaction->receiver_id }} od numeru:
                                     {{ $transaction->sender_id }}
                                     tytułem: "{{ $transaction->title }}" wysłano
