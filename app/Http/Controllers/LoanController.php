@@ -28,7 +28,7 @@ class LoanController extends Controller
     public function addLoan(Request $request): RedirectResponse
     {
         $request->validate([
-            'amount' => 'required'
+            'amount' => 'required',
         ]);
 
         $loan = new Loan([
@@ -47,13 +47,17 @@ class LoanController extends Controller
 
     public function payLoan($id): RedirectResponse
     {
-        $loan = Loan::where("id", $id)->first();
+        $loan = Loan::find($id);
         $user = User::find(Auth::user()->id);
-        $user->balance -= $loan->amount;
-        if ($loan->delete() && $user->save()) {
-            return redirect("loan.index");
+        if ($user->balance < $loan->amount) {
+            return redirect("loan.index")->with("error", "Masz za mało środków na koncie do spłaty!");
         } else {
-            return redirect("dashboard");
+            $user->balance -= $loan->amount;
+            if ($loan->delete() && $user->save()) {
+                return redirect("loan.index");
+            } else {
+                return redirect("dashboard");
+            }
         }
     }
 }

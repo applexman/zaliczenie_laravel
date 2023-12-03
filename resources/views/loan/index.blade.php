@@ -37,7 +37,6 @@
                         </th>
                     </thead>
                     <tbody>
-
                         @foreach ($userLoan as $loan)
                             <tr>
                                 <td>
@@ -48,6 +47,9 @@
                                     <a href="{{ route('payLoan', ['id' => $loan->id]) }}" class="blue-button">Spłać ten
                                         kredyt</a>
                                 </td>
+                                @if (session('error'))
+                                    <td>{{ session('error') }}</td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
