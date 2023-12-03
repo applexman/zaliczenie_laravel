@@ -22,8 +22,11 @@
     </style>
 
     <div class="dashboard-container">
-        <a href="{{ route('loan.get') }}" class="blue-button">Weź szybki kredyt</a>
+        <a href="{{ route('loan.get') }}" class="blue-button">Weź szybki kredyt</a><br>
         <div class="transaction-section">
+            @if (session('error'))
+                <h3 class="sending text-center">{{ session('error') }}</h3>
+            @endif
             @if (count($userLoan) <= 0)
                 <h2>Nie masz historii kredytów</h2>
             @else
@@ -47,9 +50,6 @@
                                     <a href="{{ route('payLoan', ['id' => $loan->id]) }}" class="blue-button">Spłać ten
                                         kredyt</a>
                                 </td>
-                                @if (session('error'))
-                                    <td>{{ session('error') }}</td>
-                                @endif
                             </tr>
                         @endforeach
                     </tbody>
