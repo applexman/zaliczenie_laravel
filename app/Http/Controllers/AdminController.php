@@ -52,13 +52,15 @@ class AdminController extends Controller
             'password' => 'required| min:8',
             'role' => 'required',
         ]);
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $password = Hash::make($request->input('password'));
-        $role = $request->input('role');
 
+        $user = User::create([
+            'name'=>$request->input('name'),
+            'email'=>$request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role'=> $request->input('role'),
+        ]);
 
-        if (DB::insert('insert into users(name, email, password, role) values(?,?,?,?)', [$name, $email, $password, $role])) {
+        if ($user->save()) {
             return redirect('admin.index');
         } else {
             return redirect('admin.create');

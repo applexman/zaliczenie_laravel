@@ -28,7 +28,7 @@ class LoanController extends Controller
     public function addLoan(Request $request): RedirectResponse
     {
         $request->validate([
-            'amount' => 'required',
+            'amount' => 'required|numeric',
         ]);
 
         $loan = new Loan([

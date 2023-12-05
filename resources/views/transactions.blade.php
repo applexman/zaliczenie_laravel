@@ -12,6 +12,7 @@
                     <h3>Dane do przelewu</h3>
                 </label>
             </div>
+
             <form method="POST" action="{{ route('transfer') }}">
                 @csrf
                 <div style="margin-bottom: 1rem;">
@@ -21,6 +22,9 @@
                     @error('receiver_id')
                         <div>{{ $message }}</div>
                     @enderror
+                    @if (session('error'))
+                        <div>{{ session('error') }}</div>
+                    @endif
                 </div>
 
                 <div style="margin-bottom: 1rem;">

@@ -6,21 +6,6 @@
         <p class="balance">Saldo Twojego Konta: <b>{{ Auth::user()->balance }}</b>zł.</p>
     </x-slot>
 
-    <style>
-        h2,
-        h3 {
-            font-weight: bold;
-        }
-
-        h2 {
-            font-size: 24px;
-        }
-
-        h3 {
-            font-size: 20px;
-        }
-    </style>
-
     <div class="dashboard-container">
         <a href="{{ route('loan.get') }}" class="blue-button">Weź szybki kredyt</a><br>
         <div class="transaction-section">

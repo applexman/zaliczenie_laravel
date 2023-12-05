@@ -32,7 +32,7 @@ class TransactionController extends Controller
     public function transfer(Request $request): RedirectResponse
     {
         $request->validate([
-            'receiver_id' => 'required',
+            'receiver_id' => 'required|numeric',
             'amount' => 'required|lte:' . Auth::user()->balance,
             'title' => 'required',
         ]);
@@ -43,22 +43,25 @@ class TransactionController extends Controller
             'title' => $request->input('title'),
         ]);
 
-        $sender = User::find(Auth::user()->id);
-        $sender->balance -= ($request->input('amount'));
+        if ($transaction->receiver_id != Auth::user()->id) {
 
-        $receiver = User::find($request->input('receiver_id'));
-        if($receiver){
-            $receiver->balance += ($request->input('amount'));
-        }
-        else{
-            return redirect('transactions')->withErrors(['receiver_id' =>'Nie znaleziono użytkownika']);
-        }
+            $sender = User::find(Auth::user()->id);
+            $sender->balance -= ($request->input('amount'));
 
+            $receiver = User::find($request->input('receiver_id'));
+            if ($receiver) {
+                $receiver->balance += ($request->input('amount'));
+            } else {
+                return redirect('transactions')->with(['error' => 'Nie znaleziono użytkownika']);
+            }
 
-        if ($transaction->save() && $sender->save() && $receiver->save()) {
-            return redirect('dashboard');
+            if ($transaction->save() && $sender->save() && $receiver->save()) {
+                return redirect('dashboard');
+            } else {
+                return redirect('dashboard');
+            }
         } else {
-            return redirect('dashboard');
+            return redirect('transactions')->with("error", "Nie możesz przelewać samemu sobie!");;
         }
     }
 }
